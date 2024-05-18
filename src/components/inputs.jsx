@@ -39,6 +39,18 @@ function Inputs({ onSearchChange, onUnitChange }) {
     onSearchChange(searchData);
   };
 
+  const handleGeolocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      const geolocationData = {
+        value: `${latitude} ${longitude}`,
+        label: `Current Location`,
+      };
+      setSearch(geolocationData);
+      onSearchChange(geolocationData);
+    });
+  };
+
   return (
     <div className="flex flex-row justify-center my-5">
       <div className="flex flex-row w-3/4 items-center justify-center space-x-4">
@@ -59,6 +71,7 @@ function Inputs({ onSearchChange, onUnitChange }) {
         <UilLocationPoint
           size={35}
           className="cursor-pointer text-white transition ease-in-out hover:scale-110"
+          onClick={handleGeolocation}
         />
       </div>
       <div className="flex flex-row w-1/4 items-center justify-center">

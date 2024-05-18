@@ -49,7 +49,7 @@ function Forecast({ data, units }) {
           );
         })}
       </div>
-      <hr className="my-1" />
+      <hr className="my-2" />
     </div>
   );
 }
