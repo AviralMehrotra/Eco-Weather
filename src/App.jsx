@@ -1,5 +1,4 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import TimeAndDate from "./components/TimeAndDate";
 import TemperatureDetails from "./components/TemperatureDetails";
 import Forecast from "./components/Forecast";

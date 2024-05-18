@@ -1,7 +1,81 @@
-import React from "react";
+import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
+import { useState } from "react";
+import { AsyncPaginate } from "react-select-async-paginate";
+import { geoApiURL, geoApiOptions } from "../services/GeoDBApi";
+import "./inputs.css";
 
-function inputs() {
-  return <div>inputs</div>;
+function Inputs({ onSearchChange, onUnitChange }) {
+  const [search, setSearch] = useState(null);
+
+  const [isMetric, setIsMetric] = useState(true);
+
+  const handleUnitToggle = () => {
+    const newUnit = isMetric ? "imperial" : "metric";
+    setIsMetric(!isMetric);
+    onUnitChange(newUnit);
+  };
+
+  const loadOptions = async (inputValue) => {
+    return fetch(
+      `${geoApiURL}/cities?minPopulation=1000000&namePrefix=${inputValue}`,
+      geoApiOptions
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        return {
+          options: response.data.map((city) => {
+            return {
+              value: `${city.latitude} ${city.longitude}`,
+              label: `${city.name}, ${city.countryCode}`,
+            };
+          }),
+        };
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleOnChange = (searchData) => {
+    setSearch(searchData);
+    onSearchChange(searchData);
+  };
+
+  return (
+    <div className="flex flex-row justify-center my-5">
+      <div className="flex flex-row w-3/4 items-center justify-center space-x-4">
+        <AsyncPaginate
+          type="text"
+          placeholder="Search..."
+          debounceTimeout={600}
+          value={search}
+          onChange={handleOnChange}
+          loadOptions={loadOptions}
+          // className="text-xl font-light p-2 w-full shadow-xl focus:outline-none rounded-xl pl-5"
+          className="custom-input"
+        />
+        <UilSearch
+          size={35}
+          className="cursor-pointer text-white transition ease-in-out hover:scale-110"
+        />
+        <UilLocationPoint
+          size={35}
+          className="cursor-pointer text-white transition ease-in-out hover:scale-110"
+        />
+      </div>
+      <div className="flex flex-row w-1/4 items-center justify-center">
+        <button
+          onClick={handleUnitToggle}
+          className="cursor-pointer text-white transition ease-in-out hover:scale-110 rounded-full py-1.5 px-2.5 shadow-lg border-white"
+          style={{
+            // backgroundColor: isMetric ? "#9865B9" : "#2341AF",
+            transition: "background-color 0.3s ease",
+            boxShadow: isMetric ? "0 0 10px #9865B9" : "0 0 10px #2341AF",
+          }}
+        >
+          {isMetric ? "°C" : "°F"}
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default inputs;
+export default Inputs;
