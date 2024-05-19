@@ -20,7 +20,6 @@ EcoWeather is built using modern web technologies including:
 
 - React.js
 - OpenWeatherMap API
-- Luxon
 - GeoDB API
 
 ## 🚀 Installation
