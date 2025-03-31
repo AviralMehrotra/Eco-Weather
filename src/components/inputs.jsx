@@ -52,8 +52,8 @@ function Inputs({ onSearchChange, onUnitChange }) {
   };
 
   return (
-    <div className="flex flex-row justify-center my-5">
-      <div className="flex flex-row w-3/4 items-center justify-center space-x-4">
+    <div className="flex flex-col sm:flex-row justify-center my-5 gap-4">
+      <div className="flex flex-row w-full sm:w-3/4 items-center justify-center space-x-4">
         <AsyncPaginate
           type="text"
           placeholder="Search..."
@@ -61,25 +61,23 @@ function Inputs({ onSearchChange, onUnitChange }) {
           value={search}
           onChange={handleOnChange}
           loadOptions={loadOptions}
-          // className="text-xl font-light p-2 w-full shadow-xl focus:outline-none rounded-xl pl-5"
           className="custom-input"
         />
         <UilSearch
-          size={35}
+          size={25}
           className="cursor-pointer text-white transition ease-in-out hover:scale-110"
         />
         <UilLocationPoint
-          size={35}
+          size={25}
           className="cursor-pointer text-white transition ease-in-out hover:scale-110"
           onClick={handleGeolocation}
         />
       </div>
-      <div className="flex flex-row w-1/4 items-center justify-center">
+      <div className="flex flex-row w-full sm:w-1/4 items-center justify-center">
         <button
           onClick={handleUnitToggle}
           className="cursor-pointer text-white transition ease-in-out hover:scale-110 rounded-full py-1.5 px-2.5 shadow-lg border-white"
           style={{
-            // backgroundColor: isMetric ? "#9865B9" : "#2341AF",
             transition: "background-color 0.3s ease",
             boxShadow: isMetric ? "0 0 10px #9865B9" : "0 0 10px #2341AF",
           }}

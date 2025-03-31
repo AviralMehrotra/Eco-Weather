@@ -15,10 +15,10 @@ function TimeAndDate({ data }) {
   return (
     <div>
       <div className="flex justify-center items-center my-4">
-        <p className="text-xl text-white font-light">{formattedDateTime}</p>
+        <p className="text-base sm:text-xl text-white font-light text-center px-2">{formattedDateTime}</p>
       </div>
       <div className="flex justify-center items-center">
-        <p className="text-3xl text-white font-medium">{city}</p>
+        <p className="text-2xl sm:text-3xl text-white font-medium text-center">{city}</p>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ function Forecast({ data, units }) {
       </div>
       <hr className="my-1" />
 
-      <div className="flex flex-row flex-wrap items-center justify-between text-white">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-white">
         {data.list.slice(0, 12).map((item, idx) => {
           const { formattedTime, formattedDate } = formatToLocalTime(
             item.dt,
@@ -31,20 +31,24 @@ function Forecast({ data, units }) {
           );
           return (
             <div
-              className="flex flex-col items-center justify-center m-2 "
+              className="flex items-center justify-between p-2 bg-white/10 rounded-lg backdrop-blur-sm"
               key={idx}
             >
-              <p className="font-light text-xs mb-1">{formattedDate}</p>
-              <p className="font-light text-sm">{formattedTime}</p>
-              <img
-                src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
-                alt="weather_condition_icon"
-                className="w-12 my-1"
-              />
-              <p className="font-medium">
-                {Math.round(item.main.temp)}
-                {tempUnit}
-              </p>
+              <div className="flex flex-col items-start">
+                <p className="font-light text-sm">{formattedDate}</p>
+                <p className="font-light text-sm">{formattedTime}</p>
+                <p className="font-medium text-lg">
+                  {Math.round(item.main.temp)}
+                  {tempUnit}
+                </p>
+              </div>
+              <div className="flex items-center">
+                <img
+                  src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                  alt="weather_condition_icon"
+                  className="w-12"
+                />
+              </div>
             </div>
           );
         })}

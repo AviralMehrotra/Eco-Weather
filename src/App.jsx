@@ -46,7 +46,7 @@ function App() {
   };
 
   return (
-    <div className="mx-auto max-w-screen-md mt-3 py-2 px-32 bg-white bg-opacity-10 backdrop-blur-lg rounded-lg drop-shadow-lg">
+    <div className="mx-auto max-w-screen-md mt-3 py-2 px-4 sm:px-8 md:px-16 lg:px-32 bg-white bg-opacity-10 backdrop-blur-md rounded-lg drop-shadow-lg">
       {/* <Navbar /> */}
       <Inputs
         onSearchChange={handleOnSearchChange}

@@ -8,7 +8,7 @@
     font-family: "Roboto Slab", sans-serif;
   }
   body {
-    background-image: url(https://wallpapercave.com/wp/wp4720381.jpg);
+    background-image: url('./assets/starrysky.jpg');;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

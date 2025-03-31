@@ -30,17 +30,19 @@ function TemperatureDetails({ data, units }) {
       <div className="flex items-center justify-center py-3 text-xl text-cyan-300">
         {data.weather[0].main}
       </div>
-      <div className="flex flex-row items-center justify-between text-white py-3">
-        <img
-          src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-          alt="weather_condition_icon"
-          className="w-20"
-        />
-        <p className="text-3xl pl-8">
-          {Math.round(data.main.temp)}
-          {tempUnit}
-        </p>
-        <div className="flex flex-col space-y-2">
+      <div className="flex flex-row items-center justify-between text-white py-3 flex-wrap">
+        <div className="flex items-center w-full sm:w-auto justify-center">
+          <img
+            src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+            alt="weather_condition_icon"
+            className="w-20"
+          />
+          <p className="text-3xl pl-8">
+            {Math.round(data.main.temp)}
+            {tempUnit}
+          </p>
+        </div>
+        <div className="flex flex-col space-y-2 w-full sm:w-auto mt-4 sm:mt-0">
           <div className="flex font-light text-sm items-center justify-center">
             <UilTemperature size={18} className="mr-1" />
             Real Feel:
@@ -65,7 +67,7 @@ function TemperatureDetails({ data, units }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center justify-center space-x-2 text-white text-sm py-3">
+      <div className="flex flex-row items-center justify-center space-x-2 text-white text-sm py-3 flex-wrap gap-y-2">
         <UilSun />
         <p className="font-light">
           Rise:{" "}
