@@ -2,15 +2,20 @@ import { DateTime } from "luxon";
 
 function Forecast({ data, units }) {
   const formatToLocalTime = (unixTimestamp, timezone) => {
-    const unixMilliseconds = unixTimestamp * 1000;
-    const dateTime = DateTime.fromMillis(unixMilliseconds).setZone(timezone);
-    // Format the time in 12-hour format with AM/PM indication without seconds
+    // Convert Unix timestamp to a Luxon DateTime object
+    const dateTime = DateTime.fromMillis(unixTimestamp * 1000);
+    
+    // Format the time in 12-hour format with AM/PM indication
     const formattedTime = dateTime.toFormat("hh:mm a");
+    
+    // Get current date for comparison
+    const now = DateTime.now();
+    
     // Format the date as "Today" if it's the current day or as "EEE, dd" for other days
-    const today = DateTime.now().setZone(timezone).startOf("day");
-    const formattedDate = dateTime.hasSame(today, "day")
+    const formattedDate = dateTime.hasSame(now, 'day')
       ? "Today"
       : dateTime.toFormat("EEE, dd");
+      
     return { formattedTime, formattedDate };
   };
 
